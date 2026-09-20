@@ -19,7 +19,7 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = False
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
-ROOL_URLCONF = "config.urls"
+ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
 ASGI_APPLICATION = "config.asgi.application"
 
@@ -103,12 +103,11 @@ DATABASES["default"]["ATOMIC_REQUESTS"] = True
 REDIS_URL = env("REDIS_URL", default="redis://localhost:6379/0")
 
 CACHES = {
-    "deafult": {
+    "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
         "LOCATION": REDIS_URL,
     }
 }
-
 
 # пароли, язык
 

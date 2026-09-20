@@ -1,27 +1,27 @@
-sevices:
+services:
   postgres:
     image: postgres:16-alpine
-    resrart:
+    restart: unless-stopped
     environment:
       POSTGRES_DB: marketplace
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postrgres
+      POSTGRES_PASSWORD: postgres
     ports:
-      - "127.0.0.1:5432:5432"
+      - "127.0.0.1:5433:5432"
     volumes:
-      - "postgres_data:/var/lib/posgresql/data"
+      - postgres_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d marketplace"]
       interval: 5s
       timeout: 5s
       retries: 10
-  
+
   redis:
     image: redis:7-alpine
     restart: unless-stopped
     ports:
       - "127.0.0.1:6379:6379"
-    volumes: 
+    volumes:
       - redis_data:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
@@ -29,6 +29,6 @@ sevices:
       timeout: 5s
       retries: 10
 
-  volumes:
-    postgres_data:
-    redis_data:
+volumes:
+  postgres_data:
+  redis_data:

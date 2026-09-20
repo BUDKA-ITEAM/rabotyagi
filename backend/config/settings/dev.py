@@ -23,3 +23,6 @@ REST_FRAMEWORK = {
 # токен для го-сервиса чата по умолчанию (в .env можно переопределить)
 if not INTERNAL_SERVICE_TOKEN:
     INTERNAL_SERVICE_TOKEN = "dev-internal-token"
+
+
+DATABASES["default"].setdefault("OPTIONS", {})["connect_timeout"] = 5
