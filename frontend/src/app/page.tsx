@@ -7,7 +7,6 @@ import {
 } from "@tanstack/react-query";
 import { repository } from "@/lib/api";
 import { Catalog } from "@/components/catalog";
-export const dynamic = "force-dynamic";
 export default async function Home() {
   const client = new QueryClient();
   await client.prefetchQuery({

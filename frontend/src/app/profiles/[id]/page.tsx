@@ -4,10 +4,10 @@ import {
   dehydrate,
   HydrationBoundary,
 } from "@tanstack/react-query";
-import { repository } from "@/lib/api";
+import { repository, profiles as initialProfiles } from "@/lib/api";
 import { ProfileView } from "@/components/profile-view";
 import { notFound } from "next/navigation";
-export const dynamic = "force-dynamic";
+export function generateStaticParams() { return initialProfiles.map(profile => ({ id: profile.id })); }
 export async function generateMetadata({
   params,
 }: {

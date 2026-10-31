@@ -100,7 +100,7 @@ export function ThemeSwitch() {
           className={`flex h-8 w-8 items-center justify-center rounded-full ${theme === value ? "text-emerald-700 dark:text-emerald-200" : "text-zinc-500 dark:text-zinc-400"}`}
         >
           <img
-            src={image}
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}${image}`}
             alt=""
             width={24}
             height={24}

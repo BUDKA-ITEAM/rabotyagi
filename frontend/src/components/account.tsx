@@ -53,7 +53,7 @@ export function Account() {
                     <ServiceCard service={s} />
                     <Link
                       className="text-center text-sm font-semibold text-emerald-700"
-                      href={`/account/services/${s.id}`}
+                      href={`/account/services/edit/?id=${encodeURIComponent(s.id)}`}
                     >
                       Редактировать
                     </Link>

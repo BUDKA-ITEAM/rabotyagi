@@ -1,4 +1,3 @@
-"use server";
 import { serviceSchema } from "./models";
 export async function validateService(input: unknown) {
   const result = serviceSchema.safeParse(input);

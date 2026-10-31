@@ -42,7 +42,7 @@ export function Catalog() {
     Object.entries(values).forEach(([key, value]) =>
       value ? next.set(key, value) : next.delete(key),
     );
-    window.history.pushState(null, "", `/?${next}`);
+    window.history.pushState(null, "", `${window.location.pathname}?${next}`);
   }
   const filtered = (query.data || [])
     .filter(
@@ -88,7 +88,7 @@ export function Catalog() {
             Расскажите о своих услугах. Ваши будущие клиенты уже здесь.
           </p>
           <a
-            href="/account/services/new"
+            href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/account/services/new/`}
             className="mt-4 flex items-center gap-2 text-xs font-semibold text-emerald-700"
           >
             Стать исполнителем <ArrowUpRight size={14} />

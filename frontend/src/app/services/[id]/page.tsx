@@ -5,9 +5,9 @@ import {
   dehydrate,
   HydrationBoundary,
 } from "@tanstack/react-query";
-import { repository, demo } from "@/lib/api";
+import { repository, demo, services } from "@/lib/api";
 import { ServiceDetail } from "@/components/service-detail";
-export const dynamic = "force-dynamic";
+export function generateStaticParams() { return services.map(service => ({ id: service.id })); }
 export async function generateMetadata({
   params,
 }: {

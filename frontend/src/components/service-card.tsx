@@ -6,7 +6,7 @@ export const priceLabel = (service: Service) =>
 export function ServiceCard({ service }: { service: Service }) {
   return (
     <Link
-      href={`/services/${service.id}`}
+      href={`/services/view/?id=${encodeURIComponent(service.id)}`}
       prefetch={false}
       className="panel group overflow-hidden transition duration-200 hover:-translate-y-1 hover:shadow-lg"
     >

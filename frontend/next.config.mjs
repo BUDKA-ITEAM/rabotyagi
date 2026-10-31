@@ -1,3 +1,8 @@
 /** @type {import('next').NextConfig} */
-const config = { experimental: { serverActions: { bodySizeLimit: "3mb" } } };
+const config = {
+  output: 'export',
+  trailingSlash: true,
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
+  images: { unoptimized: true },
+};
 export default config;
