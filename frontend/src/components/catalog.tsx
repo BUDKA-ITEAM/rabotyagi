@@ -1,9 +1,10 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams, useRouter } from "next/navigation";
+import { useState } from "react";
 import {
   Search,
-  SlidersHorizontal,
+  ChevronDown,
   ArrowUpRight,
   GraduationCap,
   Hammer,
@@ -27,6 +28,7 @@ const icons = [
   House,
 ];
 export function Catalog() {
+  const [catalogOpen, setCatalogOpen] = useState(false);
   const params = useSearchParams();
   const router = useRouter();
   const query = useQuery({
@@ -59,10 +61,20 @@ export function Catalog() {
   return (
     <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[225px_minmax(0,1fr)]">
       <aside className="min-w-0 lg:sticky lg:top-7">
-        <p className="mb-5 text-[11px] font-bold tracking-[.15em] muted">
+        <button
+          type="button"
+          aria-expanded={catalogOpen}
+          aria-controls="catalog-categories"
+          onClick={() => setCatalogOpen(open => !open)}
+          className="panel flex w-full items-center justify-between px-4 py-3 font-semibold lg:hidden"
+        >
+          Каталог
+          <ChevronDown size={20} className={`transition-transform motion-reduce:transition-none ${catalogOpen ? "rotate-180" : ""}`} />
+        </button>
+        <p className="mb-5 hidden text-[11px] font-bold tracking-[.15em] muted lg:block">
           КАТАЛОГ УСЛУГ
         </p>
-        <div className="flex gap-2 overflow-x-auto pb-2 lg:flex-col">
+        <div id="catalog-categories" className={`${catalogOpen ? "flex" : "hidden"} mt-2 flex-col gap-2 lg:mt-0 lg:flex`}>
           {categories.map((name, i) => {
             const Icon = icons[i];
             return (
@@ -71,9 +83,9 @@ export function Catalog() {
                 onClick={() =>
                   update({ category: name === "Все услуги" ? "" : name })
                 }
-                className={`flex shrink-0 items-center gap-3 rounded-xl px-3 py-3 text-left text-sm transition ${category === name ? "bg-[#e5efdf] font-semibold text-[#245a36] dark:bg-emerald-950 dark:text-emerald-300" : "muted hover:bg-zinc-100 dark:hover:bg-zinc-800"}`}
+                className={`flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm transition ${category === name ? "bg-[#e5efdf] font-semibold text-[#245a36] dark:bg-emerald-950 dark:text-emerald-300" : "muted hover:bg-zinc-100 dark:hover:bg-zinc-800"}`}
               >
-                <Icon size={18} />
+                <Icon size={18} className="shrink-0" />
                 {name}
               </button>
             );
